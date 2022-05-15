@@ -73,12 +73,12 @@ class RolController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        Permission::get();
+        $permission = Permission::get();
         $rolePermission = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
             ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
 
-        return view('roles.edit', compact('role', 'permission', 'rolePermissions'));
+        return view('roles.edit', compact('role', 'permission', 'rolePermission'));
     }
 
     /**
